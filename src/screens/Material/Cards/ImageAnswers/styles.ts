@@ -1,7 +1,6 @@
 import styled from "styled-components/native";
 
 export const Wrapper = styled.View`
-  paddingtop: 0px;
   max-width: 650px;
   align-self: center;
   width: 100%;
@@ -33,12 +32,14 @@ export const Question = styled.Text`
 `;
 
 export const WrapperButton = styled.View`
-  min-height: 110px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 `;
 
 export const Image = styled.Image`
-  width: 200px;
-  height: 100px;
+  width: 100%;
+  height: 120px;
   border-radius: 8px;
   margin: 0 auto;
 `;

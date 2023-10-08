@@ -8,15 +8,12 @@ import YoutubePlayer, {
 import * as S from "./styles";
 import { CardShorts } from "../mockData";
 
-const PROGRESS_STEP = 5;
-const PROGRESS_STEPS = 30;
-const PROGRESS_INTERVAL = 1000;
-
 const config: InitialPlayerParams = {
   controls: false,
   iv_load_policy: 3,
   modestbranding: false,
   preventFullScreen: true,
+  rel: false,
 };
 
 const ShortsVideo = ({ shortsUrl }: CardShorts) => {
@@ -43,6 +40,12 @@ const ShortsVideo = ({ shortsUrl }: CardShorts) => {
     }
   }, []);
 
+  const restartVideo = () => {
+    setPlaying(true);
+    setFinished(false);
+    playerRef.current?.seekTo(0, true);
+  };
+
   useEffect(() => {
     const interval = setInterval(async () => {
       const elapsed_sec = await playerRef.current?.getCurrentTime(); // this is a promise. dont forget to await
@@ -66,6 +69,8 @@ const ShortsVideo = ({ shortsUrl }: CardShorts) => {
   }, []);
 
   useEffect(() => {
+    console.log(elapsed);
+
     if (elapsed === "00:02") {
       setPlaying(false);
       setShowQuestion(true);
@@ -84,6 +89,9 @@ const ShortsVideo = ({ shortsUrl }: CardShorts) => {
           initialPlayerParams={config}
           onChangeState={onStateChange}
           webViewProps={{
+            onShouldStartLoadWithRequest: (request) => {
+              return request.mainDocumentURL === "about:blank";
+            },
             // Remover aspect ratio do video -> https://github.com/LonelyCpp/react-native-youtube-iframe/issues/13#issuecomment-611753123
             injectedJavaScript: `
             var element = document.getElementsByClassName('container')[0];
@@ -94,7 +102,7 @@ const ShortsVideo = ({ shortsUrl }: CardShorts) => {
         />
       </S.Wrapper>
 
-      {/* {finished && (
+      {finished && (
         <View
           style={{
             position: "absolute",
@@ -105,8 +113,11 @@ const ShortsVideo = ({ shortsUrl }: CardShorts) => {
           }}
         >
           <Text style={{ fontSize: 20, color: "white" }}>Voce errouuu</Text>
+          <S.Button onPress={restartVideo}>
+            <Text>Restart</Text>
+          </S.Button>
         </View>
-      )} */}
+      )}
 
       {showQuestion && (
         <S.CardFooter style={{ top: height / 2, marginLeft: 20 }}>
