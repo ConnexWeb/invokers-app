@@ -3,30 +3,16 @@ import { ActivityIndicator } from "react-native";
 import * as S from "./styles";
 
 export type ButtonProps = {
-  type: "answer" | "callToAction";
-  variant?: "checking" | "correct" | "incorrect" | "disabled";
-  children: React.ReactNode;
   onPress?: () => void;
-  disabled?: boolean;
+  active?: boolean;
   loading?: boolean;
+  uri?: string;
 };
 
-const ButtonImage = ({
-  loading = false,
-  type = "callToAction",
-  variant = "disabled",
-  children,
-  onPress,
-  disabled,
-}: ButtonProps) => {
+const ButtonImage = ({ onPress, active, uri }: ButtonProps) => {
   return (
-    <S.Wrapper
-      onPress={onPress}
-      type={type}
-      variant={variant}
-      disabled={disabled}
-    >
-      {children}
+    <S.Wrapper onPress={onPress} active={active}>
+      <S.Image source={{ uri }} />
     </S.Wrapper>
   );
 };
