@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components/native";
 
 import { ButtonProps } from "./index";
+import { DefaultTheme } from "styled-components";
 
 type Props = Pick<ButtonProps, "type" | "variant">;
 
@@ -22,37 +23,45 @@ const WrapperModifier = {
 
   variant: {
     answer: {
-      checking: () => css`
-        background: #f2ecf8;
+      checking: (theme: DefaultTheme) => css`
+        background: rgba(138, 43, 226, 0.2);
 
-        border: 1px solid #6a51b2;
+        border: 1px solid #8a2be2;
 
         border-bottom-color: #6a51b2;
         border-bottom-width: 4px;
         border-bottom-style: solid;
       `,
 
-      correct: () => css`
-        background: #d7ffb8;
-        border: 1px solid #58a700;
+      correct: (theme: DefaultTheme) => css`
+        background: ${theme.COLORS.BRAND_MID};
+        border: 1px solid #005139;
 
         border-bottom-color: #58a700;
         border-bottom-width: 4px;
         border-bottom-style: solid;
       `,
 
-      incorrect: () => css`
-        background: #ffdfe0;
-        border: 1px solid #ea2b2b;
+      incorrect: (theme: DefaultTheme) => css`
+        background: ${theme.COLORS.DANGER_LIGHT};
+        border: 1px solid #7b2d34;
 
         border-bottom-color: #ea2b2b;
         border-bottom-width: 4px;
         border-bottom-style: solid;
       `,
 
-      disabled: () => css`
+      disabled: (theme: DefaultTheme) => css`
         border: 1px solid #e0e0e6;
         border-bottom-color: #e0e0e6;
+        border-bottom-width: 4px;
+        border-bottom-style: solid;
+
+        background: ${theme.COLORS.GREY_500};
+
+        border: 1px solid ${theme.COLORS.GREY_700};
+
+        border-bottom-color: #6a51b2;
         border-bottom-width: 4px;
         border-bottom-style: solid;
       `,
@@ -60,43 +69,28 @@ const WrapperModifier = {
 
     callToAction: {
       checking: () => css`
-        background-color: #8d5dc6;
+        background-color: #8a2be2;
+      `,
 
-        border: 1px solid #8d5dc6;
+      correct: (theme) => css`
+        background: ${theme.COLORS.BRAND_MID};
+      `,
+
+      incorrect: (theme) => css`
+        background: ${theme.COLORS.DANGER_LIGHT};
+      `,
+
+      disabled: (theme) => css`
+        border: 1px solid #e0e0e6;
+        border-bottom-color: #e0e0e6;
+        border-bottom-width: 4px;
+        border-bottom-style: solid;
+
+        background: ${theme.COLORS.GREY_500};
+
+        border: 1px solid ${theme.COLORS.GREY_700};
 
         border-bottom-color: #6a51b2;
-        border-bottom-width: 4px;
-        border-bottom-style: solid;
-      `,
-
-      correct: () => css`
-        background: #58cc02;
-
-        border: 1px solid #58cc02;
-
-        border-bottom-color: #58a700;
-        border-bottom-width: 4px;
-        border-bottom-style: solid;
-      `,
-
-      incorrect: () => css`
-        background: #ff4b4b;
-
-        background: #ff4b4b;
-
-        border: 1px solid #ff4b4b;
-
-        border-bottom-color: #ea2b2b;
-        border-bottom-width: 4px;
-        border-bottom-style: solid;
-      `,
-
-      disabled: () => css`
-        background: #f4f4f4;
-
-        border: 1px solid #f4f4f4;
-
-        border-bottom-color: #dbdbdb;
         border-bottom-width: 4px;
         border-bottom-style: solid;
       `,
@@ -105,7 +99,7 @@ const WrapperModifier = {
 };
 
 export const Wrapper = styled.TouchableOpacity<Props>`
-  ${({ type, variant = "disabled" }) => css`
+  ${({ theme, type, variant = "disabled" }) => css`
     width: 100%;
     border-radius: 10px;
     font-size: 1.1rem;
@@ -116,7 +110,7 @@ export const Wrapper = styled.TouchableOpacity<Props>`
     align-items: center;
 
     ${!!type && WrapperModifier.type[type]}
-    ${!!variant && WrapperModifier.variant[type][variant]}
+    ${!!variant && WrapperModifier.variant[type][variant](theme)}
   `}
 `;
 
@@ -138,19 +132,19 @@ const TextModifier = {
   variant: {
     answer: {
       checking: () => css`
-        color: #36344b;
+        color: #8a2be2;
       `,
 
       correct: () => css`
-        color: #58a700;
+        color: #005139;
       `,
 
       incorrect: () => css`
-        color: #ea2b2b;
+        color: white;
       `,
 
       disabled: () => css`
-        color: #36344b;
+        color: white;
       `,
     },
 
