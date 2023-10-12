@@ -1,7 +1,6 @@
 import styled from "styled-components/native";
 
 export const Wrapper = styled.View`
-  paddingtop: 0px;
   max-width: 650px;
   align-self: center;
   width: 100%;
@@ -30,6 +29,8 @@ export const Question = styled.Text`
   text-align: center;
   width: 300px;
   margin: 10px auto;
+  color: white;
+  margin: 20px auto;
 `;
 
 export const WrapperButton = styled.View`
