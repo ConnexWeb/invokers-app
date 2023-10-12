@@ -2,6 +2,8 @@ export enum CardEnum {
   SHORTS = "SHORTS",
   MULTIPLE_CHOICE = "MULTIPLE_CHOICE",
   IMAGES_CHOICE = "IMAGES_CHOICE",
+  IMAGE = "IMAGE",
+  SELECT = "SELECT",
 }
 
 interface CardBase {
@@ -25,6 +27,14 @@ export interface CardMultipleChoice extends CardBase {
   imageUrl?: string;
 }
 
+export interface CardSelect extends CardBase {
+  type: CardEnum.SELECT;
+  options: string[];
+  answer: string;
+  isCorrects: number[];
+  imageUrl?: string;
+}
+
 export interface CardImagesChoice extends CardBase {
   type: CardEnum.IMAGES_CHOICE;
   options: string[];
@@ -33,17 +43,19 @@ export interface CardImagesChoice extends CardBase {
   imageUrl?: string;
 }
 
-export type Card = CardShorts | CardMultipleChoice | CardImagesChoice;
+export interface CardImage extends CardBase {
+  type: CardEnum.IMAGE;
+  imageUrl: string;
+}
+
+export type Card =
+  | CardShorts
+  | CardMultipleChoice
+  | CardImagesChoice
+  | CardImage
+  | CardSelect;
 
 export const data: Card[] = [
-  {
-    uuid: "1",
-    title: "Shorts",
-    description: "Shorts description",
-    type: CardEnum.SHORTS,
-    answer: "Shorts answer",
-    shortsUrl: "2zNRjLSeYy4?si=GO8zEq7K4Pf8Tcav",
-  },
   {
     uuid: "2",
     title: "Shorts",
@@ -60,7 +72,7 @@ export const data: Card[] = [
     type: CardEnum.MULTIPLE_CHOICE,
     answer: "Essa build do yasuo está correta?",
     options: ["Sim", "Não"],
-    isCorrect: 2,
+    isCorrect: 1,
     imageUrl:
       "https://user-images.githubusercontent.com/46573685/273407835-984ffb6c-d503-4906-8d3e-52ae81e7e948.png",
   },
@@ -79,5 +91,41 @@ export const data: Card[] = [
     isCorrect: 2,
     imageUrl:
       "https://user-images.githubusercontent.com/46573685/273407835-984ffb6c-d503-4906-8d3e-52ae81e7e948.png",
+  },
+  {
+    uuid: "4",
+    title: "Sobre essa composição responda:",
+    description:
+      "Faça uma analise sobre essas duas composições e reponda sobre:",
+    type: CardEnum.IMAGE,
+    imageUrl:
+      "https://user-images.githubusercontent.com/46573685/273480091-5d0e07e4-a009-4847-935e-c17671137525.png",
+  },
+  {
+    uuid: "5",
+    title:
+      "Sendo o time azul (esquerda) qual é a melhor forma de jogar com essa composição no primeiro dragão?",
+    description:
+      "Faça uma analise sobre essas duas composições e reponda sobre:",
+    type: CardEnum.SELECT,
+    answer:
+      "Sendo o time azul quais são as melhores forma de jogar com essa composição no primeiro dragão?",
+    options: [
+      "Garantir controle de visão do dragão",
+      "Ser o primero a chegar no pitch do dragão",
+      "Tentar pegar um pickoff",
+      "Ficar na lane farmando",
+    ],
+    isCorrects: [0, 1],
+    imageUrl:
+      "https://user-images.githubusercontent.com/46573685/273486810-d2cd165f-cb70-4d76-956d-f91a6d0712ba.png",
+  },
+  {
+    uuid: "1",
+    title: "Shorts",
+    description: "Shorts description",
+    type: CardEnum.SHORTS,
+    answer: "Shorts answer",
+    shortsUrl: "2zNRjLSeYy4?si=GO8zEq7K4Pf8Tcav",
   },
 ];

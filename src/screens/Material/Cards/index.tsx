@@ -5,6 +5,10 @@ import { CardEnum, data } from "./mockData";
 import ShortsVideo from "./ShortsVideo";
 import MultipleAnswers from "./MultipleAnswer";
 import ImageAnswers from "./ImageAnswers";
+import { Image } from "./Image";
+import { CardSelect } from "./CardSelect";
+
+import * as S from "./styles";
 
 export const Cards = () => {
   const [index, setIndex] = useState(0);
@@ -29,7 +33,7 @@ export const Cards = () => {
   };
 
   return (
-    <View style={{ paddingTop: 35 }}>
+    <S.Wrapper style={{ paddingTop: 35 }}>
       <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
         <TouchableOpacity onPress={handlePreviousCard}>
           <Text>Anterior</Text>
@@ -40,15 +44,25 @@ export const Cards = () => {
         </TouchableOpacity>
       </View>
 
-      {actualCard.type === CardEnum.SHORTS && <ShortsVideo {...actualCard} />}
+      {actualCard.type === CardEnum.SHORTS && (
+        <ShortsVideo nextCard={handleNextCard} {...actualCard} />
+      )}
 
       {actualCard.type === CardEnum.MULTIPLE_CHOICE && (
-        <MultipleAnswers {...actualCard} />
+        <MultipleAnswers nextCard={handleNextCard} {...actualCard} />
       )}
 
       {actualCard.type === CardEnum.IMAGES_CHOICE && (
-        <ImageAnswers {...actualCard} />
+        <ImageAnswers nextCard={handleNextCard} {...actualCard} />
       )}
-    </View>
+
+      {actualCard.type === CardEnum.IMAGE && (
+        <Image nextCard={handleNextCard} {...actualCard} />
+      )}
+
+      {actualCard.type === CardEnum.SELECT && (
+        <CardSelect nextCard={handleNextCard} {...actualCard} />
+      )}
+    </S.Wrapper>
   );
 };

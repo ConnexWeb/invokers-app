@@ -16,7 +16,11 @@ const config: InitialPlayerParams = {
   rel: false,
 };
 
-const ShortsVideo = ({ shortsUrl }: CardShorts) => {
+type Props = {
+  nextCard: () => void;
+} & CardShorts;
+
+const ShortsVideo = ({ shortsUrl, nextCard }: Props) => {
   const playerRef = useRef<YoutubeIframeRef>(null);
 
   const [elapsed, setElapsed] = useState("");
@@ -69,8 +73,6 @@ const ShortsVideo = ({ shortsUrl }: CardShorts) => {
   }, []);
 
   useEffect(() => {
-    console.log(elapsed);
-
     if (elapsed === "00:02") {
       setPlaying(false);
       setShowQuestion(true);
