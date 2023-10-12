@@ -120,12 +120,4 @@ export const data: Card[] = [
     imageUrl:
       "https://user-images.githubusercontent.com/46573685/273486810-d2cd165f-cb70-4d76-956d-f91a6d0712ba.png",
   },
-  {
-    uuid: "1",
-    title: "Shorts",
-    description: "Shorts description",
-    type: CardEnum.SHORTS,
-    answer: "Shorts answer",
-    shortsUrl: "2zNRjLSeYy4?si=GO8zEq7K4Pf8Tcav",
-  },
 ];

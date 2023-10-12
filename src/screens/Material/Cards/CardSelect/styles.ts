@@ -2,18 +2,8 @@ import styled, { css } from "styled-components/native";
 import { AntDesign } from "@expo/vector-icons";
 
 export const Wrapper = styled.View`
-  max-width: 650px;
-  align-self: center;
-  width: 100%;
-  height: 100%;
-  justify-content: space-between;
-`;
-
-export const WrapperQuestions = styled.View`
-  height: 70%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex: 1;
+  justify-content: space-around;
 `;
 
 export const Questions = styled.View``;
@@ -89,11 +79,9 @@ export const Button = styled.TouchableOpacity<{
   border: 1px solid #e0e0e6;
   box-shadow: 0px 3px 0px #e0e0e6;
   height: 64px;
-  font-size: 17px;
   margin-bottom: 16px;
   width: 100%;
   border-radius: 10px;
-  font-size: 1.1rem;
   font-weight: 700;
   color: white;
   display: flex;
@@ -107,4 +95,6 @@ export const Button = styled.TouchableOpacity<{
 
 export const ButtonText = styled.Text`
   color: white;
+  font-size: 17.6px;
+  line-height: 20px;
 `;

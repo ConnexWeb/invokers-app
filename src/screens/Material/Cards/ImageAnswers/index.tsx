@@ -35,11 +35,12 @@ const ImageAnswers = ({ answer, options, isCorrect, nextCard }: Props) => {
 
   return (
     <S.Wrapper>
+      <S.Question>{answer}</S.Question>
+
       <FlatList
         data={options}
         keyExtractor={(item) => item}
         numColumns={2}
-        ListHeaderComponent={() => <S.Question>{answer}</S.Question>}
         contentContainerStyle={{
           flex: 1,
           justifyContent: "center",

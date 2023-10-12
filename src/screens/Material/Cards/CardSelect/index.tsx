@@ -106,25 +106,21 @@ export const CardSelect = ({
 
   return (
     <S.Wrapper>
-      <S.WrapperQuestions>
-        <S.Question>{answer}</S.Question>
+      <S.Question>{answer}</S.Question>
 
-        {imageUrl && (
-          <S.Image resizeMode="contain" source={{ uri: imageUrl }} />
-        )}
+      {imageUrl && <S.Image resizeMode="contain" source={{ uri: imageUrl }} />}
 
-        <S.Questions>
-          {cardOptions.map((answer, index) => (
-            <>
-              <S.Button onPress={() => handlePress(index)} state={answer.state}>
-                <S.ButtonText>{answer.answer}</S.ButtonText>
+      <S.Questions>
+        {cardOptions.map((answer, index) => (
+          <>
+            <S.Button onPress={() => handlePress(index)} state={answer.state}>
+              <S.ButtonText>{answer.answer}</S.ButtonText>
 
-                {answer.state === "SELECTED" && <S.CheckIcon />}
-              </S.Button>
-            </>
-          ))}
-        </S.Questions>
-      </S.WrapperQuestions>
+              {answer.state === "SELECTED" && <S.CheckIcon />}
+            </S.Button>
+          </>
+        ))}
+      </S.Questions>
 
       <S.WrapperButton>
         {isValidate && (

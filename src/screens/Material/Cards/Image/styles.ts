@@ -1,12 +1,8 @@
 import styled from "styled-components/native";
 
 export const Wrapper = styled.View`
-  padding-top: 0px;
-  max-width: 650px;
-  align-self: center;
-  width: 100%;
-  height: 100%;
-  justify-content: space-between;
+  flex: 1;
+  justify-content: space-around;
 `;
 
 export const Title = styled.Text`

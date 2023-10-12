@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 
+import { ProgressBar } from "../../../components/ProgressBar";
 import { CardEnum, data } from "./mockData";
 import ShortsVideo from "./ShortsVideo";
 import MultipleAnswers from "./MultipleAnswer";
@@ -16,6 +17,7 @@ export const Cards = () => {
 
   const handleNextCard = () => {
     if (index === data.length - 1) {
+      setIndex(index + 1);
       return;
     }
 
@@ -34,15 +36,17 @@ export const Cards = () => {
 
   return (
     <S.Wrapper style={{ paddingTop: 35 }}>
-      <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-        <TouchableOpacity onPress={handlePreviousCard}>
-          <Text>Anterior</Text>
-        </TouchableOpacity>
+      <S.Header>
+        <View />
 
-        <TouchableOpacity onPress={handleNextCard}>
-          <Text>Próximo</Text>
-        </TouchableOpacity>
-      </View>
+        <S.Title>Questões básicas</S.Title>
+
+        <View>
+          <S.Title>1/10</S.Title>
+        </View>
+      </S.Header>
+
+      <ProgressBar current={index} total={data.length} />
 
       {actualCard.type === CardEnum.SHORTS && (
         <ShortsVideo nextCard={handleNextCard} {...actualCard} />
