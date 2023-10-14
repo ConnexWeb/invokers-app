@@ -9,6 +9,8 @@ export const Question = styled.Text`
   font-size: 23px;
   margin: 20px auto;
   color: #fff;
+  font-family: ${({ theme }) => theme.FONTS.BOLD};
+  text-align: center;
 `;
 
 export const WrapperButton = styled.View`

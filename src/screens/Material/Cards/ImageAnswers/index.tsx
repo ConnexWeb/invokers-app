@@ -1,5 +1,4 @@
 import React from "react";
-import { View } from "react-native";
 
 import * as S from "./styles";
 import ButtonImage from "../../../../components/ButtonImage";
@@ -35,8 +34,6 @@ const ImageAnswers = ({ answer, options, isCorrect, nextCard }: Props) => {
 
   return (
     <S.Wrapper>
-      <S.Question>{answer}</S.Question>
-
       <FlatList
         data={options}
         keyExtractor={(item) => item}
@@ -45,11 +42,15 @@ const ImageAnswers = ({ answer, options, isCorrect, nextCard }: Props) => {
           flex: 1,
           justifyContent: "center",
         }}
+        ListHeaderComponent={() => <S.Question>{answer}</S.Question>}
         renderItem={({ item, index }) => (
           <ButtonImage
             onPress={() => handlePress(index)}
             uri={item}
             active={index === selected}
+            isCorrect={
+              index === selected && isValidate ? isCorrectAnswer : null
+            }
           />
         )}
       />
