@@ -21,11 +21,9 @@ export const Image = styled.Image`
 `;
 
 export const Question = styled.Text`
-  display: flex;
-  font-size: 20px;
-  line-height: 30px;
-  text-align: center;
-  width: 300px;
-  margin: 10px auto;
+  font-size: 22px;
+  margin: 0 auto;
   color: #fff;
+  font-family: ${({ theme }) => theme.FONTS.BOLD};
+  text-align: center;
 `;
