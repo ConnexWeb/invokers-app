@@ -136,7 +136,7 @@ const TextModifier = {
       `,
 
       correct: () => css`
-        color: #005139;
+        color: white;
       `,
 
       incorrect: () => css`
@@ -166,6 +166,7 @@ const TextModifier = {
 
 export const Text = styled.Text<Props>`
   ${({ theme, type, variant = "disabled" }) => css`
+    font-family: ${({ theme }) => theme.FONTS.BOLD};
     ${!!type && TextModifier.type[type]}
     ${!!variant && TextModifier.variant[type][variant]}
   `}
