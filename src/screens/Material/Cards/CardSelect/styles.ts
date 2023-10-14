@@ -14,13 +14,11 @@ export const Title = styled.Text`
 `;
 
 export const Question = styled.Text`
-  display: flex;
-  font-size: 20px;
-  line-height: 30px;
+  font-size: 22px;
+  margin: 0 auto;
+  color: #fff;
+  font-family: ${({ theme }) => theme.FONTS.BOLD};
   text-align: center;
-  width: 300px;
-  margin: 10px auto;
-  color: white;
 `;
 
 export const WrapperButton = styled.View`
@@ -34,7 +32,9 @@ export const Image = styled.Image`
   margin: 10px auto;
 `;
 
-export const CheckIcon = styled(AntDesign).attrs(({ theme }) => ({
+export const CheckIcon = styled(AntDesign).attrs<{
+  state: "UNSELECT" | "SELECTED" | "CORRECT" | "INCORRECT";
+}>(({ theme }) => ({
   name: "checkcircle",
   size: 24,
   color: "#8a2be2",
@@ -63,6 +63,7 @@ const ButtonModifiers = {
     border-bottom-width: 4px;
     border-bottom-style: solid;
   `,
+
   SELECTED: () => css`
     background: rgba(138, 43, 226, 0.2);
     border: 1px solid #8a2be2;
@@ -70,10 +71,27 @@ const ButtonModifiers = {
     border-bottom-width: 4px;
     border-bottom-style: solid;
   `,
+
+  CORRECT: (theme) => css`
+    background: ${theme.COLORS.BRAND_MID};
+    border: 1px solid #005139;
+
+    border-bottom-color: #58a700;
+    border-bottom-width: 4px;
+    border-bottom-style: solid;
+  `,
+
+  INCORRECT: (theme) => css`
+    background: ${theme.COLORS.DANGER_LIGHT};
+    border: 1px solid #7b2d34;
+    border-bottom-color: #ea2b2b;
+    border-bottom-width: 4px;
+    border-bottom-style: solid;
+  `,
 };
 
-export const Button = styled.TouchableOpacity<{
-  state: "UNSELECT" | "SELECTED";
+export const Button = styled.Pressable<{
+  state: "UNSELECT" | "SELECTED" | "CORRECT" | "INCORRECT";
 }>`
   position: relative;
   border: 1px solid #e0e0e6;
@@ -97,4 +115,5 @@ export const ButtonText = styled.Text`
   color: white;
   font-size: 17.6px;
   line-height: 20px;
+  font-family: ${({ theme }) => theme.FONTS.BOLD};
 `;

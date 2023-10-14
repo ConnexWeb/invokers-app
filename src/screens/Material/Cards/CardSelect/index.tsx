@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { View } from "react-native";
-import { AntDesign } from "@expo/vector-icons";
 
 import * as S from "./styles";
 import { CardImagesChoice } from "../mockData";
@@ -8,6 +6,7 @@ import Button from "../../../../components/Button";
 
 type Props = {
   nextCard: () => void;
+  isCorrects: number[];
 } & CardImagesChoice;
 
 export const CardSelect = ({
@@ -28,14 +27,24 @@ export const CardSelect = ({
     const isCorrectSorted = isCorrects.sort((a, b) => a - b);
     const optionsSelectedSorted = optionsSelected.sort((a, b) => a - b);
 
-    console.log(
-      JSON.stringify(isCorrectSorted),
-      JSON.stringify(optionsSelectedSorted)
-    );
-
     setIsCorrectAnswer(
       JSON.stringify(isCorrectSorted) === JSON.stringify(optionsSelectedSorted)
     );
+
+    const optionsMapped = cardOptions.map((option, i) => {
+      if (optionsSelected.includes(i)) {
+        return {
+          ...option,
+          state: isCorrectSorted.includes(i) ? "CORRECT" : "INCORRECT",
+        };
+      }
+
+      return {
+        ...option,
+      };
+    });
+
+    setCardOptions(optionsMapped);
   };
 
   const handlePress = (index: number) => {
@@ -112,13 +121,15 @@ export const CardSelect = ({
 
       <S.Questions>
         {cardOptions.map((answer, index) => (
-          <>
-            <S.Button onPress={() => handlePress(index)} state={answer.state}>
-              <S.ButtonText>{answer.answer}</S.ButtonText>
+          <S.Button
+            key={index}
+            onPress={() => handlePress(index)}
+            state={answer.state}
+          >
+            <S.ButtonText>{answer.answer}</S.ButtonText>
 
-              {answer.state === "SELECTED" && <S.CheckIcon />}
-            </S.Button>
-          </>
+            {answer.state === "SELECTED" && <S.CheckIcon />}
+          </S.Button>
         ))}
       </S.Questions>
 
