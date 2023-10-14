@@ -1,15 +1,56 @@
-import { StyleSheet, Text, View } from "react-native";
-import { Cards } from "./src/screens/Material/Cards";
-import React from "react";
-import { ThemeProvider } from "styled-components";
-
+import { StyleSheet, View } from "react-native";
+import React, { useCallback } from "react";
+import * as SplashScreen from "expo-splash-screen";
 import { THEME } from "./src/styles/theme";
 
+import {
+  useFonts,
+  Roboto_100Thin,
+  Roboto_100Thin_Italic,
+  Roboto_300Light,
+  Roboto_300Light_Italic,
+  Roboto_400Regular,
+  Roboto_400Regular_Italic,
+  Roboto_500Medium,
+  Roboto_500Medium_Italic,
+  Roboto_700Bold,
+  Roboto_700Bold_Italic,
+  Roboto_900Black,
+  Roboto_900Black_Italic,
+} from "@expo-google-fonts/roboto";
+import { Home } from "./src/screens/Home";
+import { ThemeProvider } from "styled-components";
+
 export default function App() {
+  const [fontsLoaded] = useFonts({
+    Roboto_100Thin,
+    Roboto_100Thin_Italic,
+    Roboto_300Light,
+    Roboto_300Light_Italic,
+    Roboto_400Regular,
+    Roboto_400Regular_Italic,
+    Roboto_500Medium,
+    Roboto_500Medium_Italic,
+    Roboto_700Bold,
+    Roboto_700Bold_Italic,
+    Roboto_900Black,
+    Roboto_900Black_Italic,
+  });
+
+  const onLayoutRootView = useCallback(async () => {
+    if (fontsLoaded) {
+      await SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded]);
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
   return (
     <ThemeProvider theme={THEME}>
-      <View style={styles.container}>
-        <Cards />
+      <View style={styles.container} onLayout={onLayoutRootView}>
+        <Home />
       </View>
     </ThemeProvider>
   );
