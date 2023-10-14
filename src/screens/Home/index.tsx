@@ -126,7 +126,7 @@ export const Home = () => {
         <S.ModuleTitle style={{ marginBottom: 10 }}>Bronze</S.ModuleTitle>
 
         <S.WrapperProgress>
-          <ProgressBar actualProgress={0} />
+          <ProgressBar actualProgress={50} />
         </S.WrapperProgress>
 
         <FlatList

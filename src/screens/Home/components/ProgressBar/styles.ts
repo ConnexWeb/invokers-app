@@ -13,6 +13,7 @@ export const Bar = styled.View`
 export const ProgressIndicatorText = styled.Text`
   font-size: 12px;
   color: white;
+  font-family: ${({ theme }) => theme.FONTS.BOLD};
 `;
 
 export const ProgressIndicator = styled(View)`
@@ -20,7 +21,7 @@ export const ProgressIndicator = styled(View)`
   height: 23px;
   padding: 3px 6px;
   border-radius: 99px;
-  background-color: #27ae60;
+  background-color: #00b37e;
   margin-top: -8px;
   margin-left: -10px;
   align-items: center;
@@ -33,7 +34,7 @@ export const Progress = styled.View<{
     width: ${`${progress}%`};
     height: 8px;
     border-radius: 8px;
-    background-color: #27ae60;
+    background-color: #00b37e;
   `}
 `;
 

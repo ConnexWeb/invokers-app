@@ -31,9 +31,9 @@ export const ExerciseDescription = styled.Text`
 `;
 
 export const ExerciseImage = styled.Image`
-  width: 50px;
-  height: 50px;
-  border-radius: 5px;
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
 `;
 
 export const InProgress = styled(Entypo).attrs({
@@ -41,7 +41,7 @@ export const InProgress = styled(Entypo).attrs({
   size: 25,
   color: "#7C7C8A",
 })`
-  padding: 5px;
+  padding: 4px;
 `;
 
 export const Done = styled(Entypo).attrs({
@@ -49,7 +49,7 @@ export const Done = styled(Entypo).attrs({
   size: 25,
   color: "#00B37E",
 })`
-  padding: 5px;
+  padding: 4px;
 `;
 ``;
 
@@ -58,6 +58,6 @@ export const Blocked = styled(Entypo).attrs({
   size: 25,
   color: "#7C7C8A",
 })`
-  padding: 5px;
+  padding: 4px;
 `;
 ``;
