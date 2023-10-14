@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import * as S from "./styles";
 import Button from "../../../../components/Button";
 import { CardMultipleChoice } from "../mockData";
-import { View } from "react-native";
 
 type Props = {
   nextCard: () => void;
@@ -88,9 +87,7 @@ const MultipleAnswer = ({
     <S.Wrapper>
       <S.Question>{answer}</S.Question>
 
-      <S.WrapperImage>
-        {imageUrl && <S.Image source={{ uri: imageUrl }} />}
-      </S.WrapperImage>
+      {imageUrl && <S.Image source={{ uri: imageUrl }} />}
 
       <S.WrapperQuestions>
         <S.Questions>

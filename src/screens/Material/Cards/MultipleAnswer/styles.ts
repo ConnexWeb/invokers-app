@@ -16,10 +16,11 @@ export const Questions = styled.View``;
 export const Title = styled.Text``;
 
 export const Question = styled.Text`
-  font-size: 20px;
+  font-size: 22px;
+  margin: 0 auto;
+  color: #fff;
+  font-family: ${({ theme }) => theme.FONTS.BOLD};
   text-align: center;
-  color: white;
-  font-weight: bold;
 `;
 
 export const WrapperButton = styled.View`
