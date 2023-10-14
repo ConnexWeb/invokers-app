@@ -57,6 +57,25 @@ export type Card =
 
 export const data: Card[] = [
   {
+    uuid: "5",
+    title:
+      "Sendo o time azul (esquerda) qual é a melhor forma de jogar com essa composição no primeiro dragão?",
+    description:
+      "Faça uma analise sobre essas duas composições e reponda sobre:",
+    type: CardEnum.SELECT,
+    answer:
+      "Sendo o time azul quais são as melhores forma de jogar com essa composição no primeiro dragão?",
+    options: [
+      "Garantir controle de visão do dragão",
+      "Ser o primero a chegar no pitch do dragão",
+      "Tentar pegar um pickoff",
+      "Ficar na lane farmando",
+    ],
+    isCorrects: [0, 1],
+    imageUrl:
+      "https://user-images.githubusercontent.com/46573685/273486810-d2cd165f-cb70-4d76-956d-f91a6d0712ba.png",
+  },
+  {
     uuid: "2",
     title: "Shorts",
     description: "Shorts description",
@@ -101,23 +120,19 @@ export const data: Card[] = [
     imageUrl:
       "https://user-images.githubusercontent.com/46573685/273480091-5d0e07e4-a009-4847-935e-c17671137525.png",
   },
+
   {
-    uuid: "5",
-    title:
-      "Sendo o time azul (esquerda) qual é a melhor forma de jogar com essa composição no primeiro dragão?",
-    description:
-      "Faça uma analise sobre essas duas composições e reponda sobre:",
-    type: CardEnum.SELECT,
-    answer:
-      "Sendo o time azul quais são as melhores forma de jogar com essa composição no primeiro dragão?",
+    uuid: "1",
+    title: "Shorts",
+    description: "Shorts description",
+    type: CardEnum.IMAGES_CHOICE,
+    answer: "O seu jungler diz: JIXN QUITA!, qual é aparência dele?",
     options: [
-      "Garantir controle de visão do dragão",
-      "Ser o primero a chegar no pitch do dragão",
-      "Tentar pegar um pickoff",
-      "Ficar na lane farmando",
+      "https://pbs.twimg.com/media/F8SIzMyWIAAy6bf?format=jpg&name=medium",
+      "https://pbs.twimg.com/media/F8Q-oiHXYAAzVji?format=png&name=small",
+      "https://pbs.twimg.com/media/F8PyK6FaUAEHszO?format=jpg&name=medium",
+      "https://pbs.twimg.com/media/F8R4IuOWEAALDvk?format=jpg&name=900x900",
     ],
-    isCorrects: [0, 1],
-    imageUrl:
-      "https://user-images.githubusercontent.com/46573685/273486810-d2cd165f-cb70-4d76-956d-f91a6d0712ba.png",
+    isCorrect: 3,
   },
 ];
