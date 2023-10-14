@@ -1,7 +1,10 @@
 import styled, { css } from "styled-components/native";
 
-export const Wrapper = styled.TouchableOpacity`
-  ${({ theme, active }) => css`
+export const Wrapper = styled.Pressable<{
+  active: boolean;
+  isCorrect?: boolean;
+}>`
+  ${({ theme, active, isCorrect }) => css`
     flex: 1;
     height: 200px;
     padding: 4px;
@@ -12,6 +15,14 @@ export const Wrapper = styled.TouchableOpacity`
     ${active &&
     css`
       background-color: #8a2be2;
+    `}
+
+    ${isCorrect !== null &&
+    active &&
+    css`
+      ${isCorrect && `background-color: #00ff00;`}
+
+      ${!isCorrect && `background-color: #ff0000;`}
     `}
   `}
 `;
