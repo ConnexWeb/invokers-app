@@ -14,8 +14,6 @@ const ButtonImage = ({
   uri,
   isCorrect = null,
 }: ButtonProps) => {
-  console.log("isCorrect", isCorrect);
-
   return (
     <S.Wrapper active={active} onPress={onPress} isCorrect={isCorrect}>
       <S.Image source={{ uri }} />

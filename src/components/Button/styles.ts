@@ -117,13 +117,12 @@ export const Wrapper = styled.TouchableOpacity<Props>`
 const TextModifier = {
   type: {
     answer: () => css`
-      font-size: 17.6px;
-      line-height: 20px;
+      font-size: 14px;
     `,
 
     callToAction: () => css`
       font-style: normal;
-      font-size: 16px;
+      font-size: 14px;
       line-height: 24px;
       color: white;
     `,

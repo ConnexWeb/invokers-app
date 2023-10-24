@@ -1,4 +1,4 @@
-import Button from "../../../../components/Button";
+import Button from "../../../components/Button";
 import { CardImagesChoice } from "../mockData";
 
 import * as S from "./styles";
@@ -9,6 +9,8 @@ type Props = {
 
 export const Image = ({ title, imageUrl, description, nextCard }: Props) => (
   <S.Wrapper>
+    <S.Title>Leia com atenção:</S.Title>
+
     <S.Question>{title}</S.Question>
 
     <S.Image resizeMode="contain" source={{ uri: imageUrl }} />

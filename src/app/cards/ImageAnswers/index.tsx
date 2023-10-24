@@ -1,10 +1,10 @@
 import React from "react";
 
 import * as S from "./styles";
-import ButtonImage from "../../../../components/ButtonImage";
+import ButtonImage from "../../../components/ButtonImage";
 import { CardImagesChoice } from "../mockData";
 import { FlatList } from "react-native";
-import Button from "../../../../components/Button";
+import Button from "../../../components/Button";
 
 type Props = {
   nextCard: () => void;
@@ -34,6 +34,8 @@ const ImageAnswers = ({ answer, options, isCorrect, nextCard }: Props) => {
 
   return (
     <S.Wrapper>
+      <S.Title>Escolha a opção correta:</S.Title>
+
       <FlatList
         data={options}
         keyExtractor={(item) => item}
@@ -42,7 +44,7 @@ const ImageAnswers = ({ answer, options, isCorrect, nextCard }: Props) => {
           flex: 1,
           justifyContent: "center",
         }}
-        ListHeaderComponent={() => <S.Question>{answer}</S.Question>}
+        ListHeaderComponent={<S.Question>{answer}</S.Question>}
         renderItem={({ item, index }) => (
           <ButtonImage
             onPress={() => handlePress(index)}

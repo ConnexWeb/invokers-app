@@ -42,7 +42,7 @@ export const Header = styled.View`
   align-items: center;
   padding: 10px 20px;
   background-color: #202024;
-  padding-top: 30px;
+  padding-top: 35px;
   margin-bottom: 15px;
 `;
 
@@ -50,7 +50,7 @@ export const HeaderTitle = styled.Text`
   ${({ theme }) => css`
     font-size: 14px;
     color: white;
-    font-family: ${theme.FONTS.REGULAR};
+    font-family: ${theme.FONTS.BOLD};
   `};
 `;
 

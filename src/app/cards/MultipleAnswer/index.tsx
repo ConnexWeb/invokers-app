@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import * as S from "./styles";
-import Button from "../../../../components/Button";
+import Button from "../../../components/Button";
 import { CardMultipleChoice } from "../mockData";
 
 type Props = {
@@ -85,6 +85,8 @@ const MultipleAnswer = ({
 
   return (
     <S.Wrapper>
+      <S.Title>Escolha a correta:</S.Title>
+
       <S.Question>{answer}</S.Question>
 
       {imageUrl && <S.Image source={{ uri: imageUrl }} />}

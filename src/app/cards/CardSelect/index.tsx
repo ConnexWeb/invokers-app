@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import * as S from "./styles";
 import { CardImagesChoice } from "../mockData";
-import Button from "../../../../components/Button";
+import Button from "../../../components/Button";
 
 type Props = {
   nextCard: () => void;
@@ -115,6 +115,8 @@ export const CardSelect = ({
 
   return (
     <S.Wrapper>
+      <S.Title>Escolha as respostas corretas:</S.Title>
+
       <S.Question>{answer}</S.Question>
 
       {imageUrl && <S.Image resizeMode="contain" source={{ uri: imageUrl }} />}
@@ -146,7 +148,7 @@ export const CardSelect = ({
 
         {!isValidate && (
           <>
-            {selected !== null && (
+            {optionsSelected.length > 1 && (
               <Button
                 onPress={handleValidated}
                 type="callToAction"
@@ -156,7 +158,7 @@ export const CardSelect = ({
               </Button>
             )}
 
-            {selected === null && (
+            {optionsSelected.length <= 1 && (
               <Button type="callToAction" variant="disabled">
                 Validar
               </Button>

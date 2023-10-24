@@ -1,7 +1,5 @@
-import { StyleSheet, View } from "react-native";
-import React, { useCallback } from "react";
-import * as SplashScreen from "expo-splash-screen";
-import { THEME } from "./src/styles/theme";
+import { useEffect } from "react";
+import { SplashScreen, Slot } from "expo-router";
 
 import {
   useFonts,
@@ -18,11 +16,17 @@ import {
   Roboto_900Black,
   Roboto_900Black_Italic,
 } from "@expo-google-fonts/roboto";
-import { Home } from "./src/screens/Home";
 import { ThemeProvider } from "styled-components";
+import { THEME } from "../styles/theme";
+SplashScreen.preventAutoHideAsync();
 
-export default function App() {
-  const [fontsLoaded] = useFonts({
+export const unstable_settings = {
+  // Ensure any route can link back to `/`
+  initialRouteName: "home",
+};
+
+export default function Layout() {
+  const [fontsLoaded, fontError] = useFonts({
     Roboto_100Thin,
     Roboto_100Thin_Italic,
     Roboto_300Light,
@@ -37,27 +41,19 @@ export default function App() {
     Roboto_900Black_Italic,
   });
 
-  const onLayoutRootView = useCallback(async () => {
-    if (fontsLoaded) {
-      await SplashScreen.hideAsync();
+  useEffect(() => {
+    if (fontsLoaded || fontError) {
+      SplashScreen.hideAsync();
     }
-  }, [fontsLoaded]);
+  }, [fontsLoaded, fontError]);
 
-  if (!fontsLoaded) {
+  if (!fontsLoaded && !fontError) {
     return null;
   }
 
   return (
     <ThemeProvider theme={THEME}>
-      <View style={styles.container} onLayout={onLayoutRootView}>
-        <Home />
-      </View>
+      <Slot />
     </ThemeProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});

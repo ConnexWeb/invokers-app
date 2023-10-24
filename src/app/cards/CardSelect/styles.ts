@@ -9,16 +9,21 @@ export const Wrapper = styled.View`
 export const Questions = styled.View``;
 
 export const Title = styled.Text`
-  font-size: 20px;
-  margin-top: 20px;
+  ${({ theme }) => css`
+    font-size: 16px;
+    color: #00b37e;
+    font-family: ${theme.FONTS.BOLD};
+    margin-bottom: 10px;
+  `}
 `;
 
 export const Question = styled.Text`
-  font-size: 22px;
-  margin: 0 auto;
-  color: #fff;
-  font-family: ${({ theme }) => theme.FONTS.BOLD};
-  text-align: center;
+  ${({ theme }) => css`
+    font-size: 18px;
+    color: #fff;
+    font-family: ${theme.FONTS.BOLD};
+    text-align: center;
+  `}
 `;
 
 export const WrapperButton = styled.View`
@@ -113,7 +118,6 @@ export const Button = styled.Pressable<{
 
 export const ButtonText = styled.Text`
   color: white;
-  font-size: 17.6px;
-  line-height: 20px;
+  font-size: 14px;
   font-family: ${({ theme }) => theme.FONTS.BOLD};
 `;
