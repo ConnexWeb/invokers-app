@@ -13,8 +13,7 @@ export const cards: Cards[] = [
         id: 1,
         title:
           "Sendo o time azul (esquerda) qual é a melhor forma de jogar com essa composição no primeiro dragão?",
-        description:
-          "Faça uma analise sobre essas duas composições e reponda sobre:",
+        description: "Guia para iniciantes",
         type: CardEnum.SELECT,
         answer:
           "Sendo o time azul quais são as melhores forma de jogar com essa composição no primeiro dragão?",

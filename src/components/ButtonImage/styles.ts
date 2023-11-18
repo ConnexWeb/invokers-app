@@ -6,8 +6,8 @@ export const Wrapper = styled.Pressable<{
 }>`
   ${({ theme, active, isCorrect }) => css`
     flex: 1;
-    height: 200px;
     padding: 4px;
+    height: 150px;
     background-color: ${theme.COLORS.GREY_600};
     margin: 5px;
     border-radius: 8px;

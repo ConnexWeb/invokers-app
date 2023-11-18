@@ -24,6 +24,9 @@ export const Questions = styled.View``;
 
 export const Question = styled.Text`
   ${({ theme }) => css`
+    width: 80%;
+    justify-content: center;
+    align-items: center;
     font-size: 20px;
     color: #fff;
     font-family: ${theme.FONTS.BOLD};

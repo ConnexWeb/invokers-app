@@ -3,7 +3,7 @@ import { AntDesign } from "@expo/vector-icons";
 
 export const Wrapper = styled.View`
   flex: 1;
-  justify-content: space-around;
+  justify-content: space-between;
 `;
 
 export const Questions = styled.View``;
@@ -19,10 +19,11 @@ export const Title = styled.Text`
 
 export const Question = styled.Text`
   ${({ theme }) => css`
+    width: 80%;
+    text-align: center;
     font-size: 18px;
     color: #fff;
     font-family: ${theme.FONTS.BOLD};
-    text-align: center;
   `}
 `;
 
@@ -120,4 +121,6 @@ export const ButtonText = styled.Text`
   color: white;
   font-size: 14px;
   font-family: ${({ theme }) => theme.FONTS.BOLD};
+  text-align: center;
+  line-height: 20px;
 `;

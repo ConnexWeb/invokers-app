@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import * as S from "./styles";
 import ButtonImage from "../../../components/ButtonImage";
@@ -10,10 +10,19 @@ type Props = {
   nextCard: () => void;
 } & CardImagesChoice;
 
-const ImageAnswers = ({ answer, options, isCorrect, nextCard }: Props) => {
+const ImageAnswers = ({
+  question,
+  image,
+  image2,
+  image3,
+  image4,
+  isCorrect,
+  nextCard,
+}: Props) => {
   const [selected, setSelected] = React.useState(null);
   const [isValidate, setIsValidate] = React.useState(false);
   const [isCorrectAnswer, setIsCorrectAnswer] = React.useState(false);
+  const [options, setOptions] = React.useState([]);
 
   const handleValidated = () => {
     setIsValidate(true);
@@ -28,9 +37,11 @@ const ImageAnswers = ({ answer, options, isCorrect, nextCard }: Props) => {
 
   const handleNextCard = () => {
     nextCard();
-    setIsValidate(false);
-    setSelected(null);
   };
+
+  useEffect(() => {
+    setOptions([image, image2, image3, image4]);
+  }, [image]);
 
   return (
     <S.Wrapper>
@@ -44,7 +55,7 @@ const ImageAnswers = ({ answer, options, isCorrect, nextCard }: Props) => {
           flex: 1,
           justifyContent: "center",
         }}
-        ListHeaderComponent={<S.Question>{answer}</S.Question>}
+        ListHeaderComponent={<S.Question>{question}</S.Question>}
         renderItem={({ item, index }) => (
           <ButtonImage
             onPress={() => handlePress(index)}

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, Pressable } from "react-native";
+import { View, Text, Pressable, ActivityIndicator } from "react-native";
 
 import { ProgressBar } from "../../components/ProgressBar";
 import { cards } from "../../data/cards";
@@ -13,6 +13,7 @@ import { useLocalSearchParams } from "expo-router";
 
 import * as S from "./styles";
 import { Link } from "expo-router";
+import { getModuleById } from "../../services/modules";
 
 const CardComponent = {
   SHORTS: ShortsVideo,
@@ -28,30 +29,34 @@ export default function Cards() {
   const [index, setIndex] = useState(0);
   const [data, setData] = useState([]);
   const [isFinished, setIsFinished] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleNextCard = () => {
-    setIndex(index + 1);
+    setIsLoading(true);
+
+    setTimeout(() => {
+      setIndex(index + 1);
+      setIsLoading(false);
+    }, 400);
+  };
+
+  const handleGetCards = async () => {
+    const response = await getModuleById(id);
+
+    setData(response.cards);
   };
 
   useEffect(() => {
-    const response = cards.filter(
-      (card) => card.module_id === parseInt(id[0])
-    )[0];
-
-    setData(response.cards);
+    handleGetCards();
   }, []);
 
   useEffect(() => {
-    console.log(index, data.length);
-
     if (data.length === 0) {
       return;
     }
 
     if (index === data.length) {
-      setTimeout(() => {
-        setIsFinished(true);
-      }, 1000);
+      setIsFinished(true);
     }
   }, [index]);
 
@@ -89,7 +94,15 @@ export default function Cards() {
         <View />
       </S.Header>
 
-      <Component nextCard={handleNextCard} {...data[index]} />
+      {isLoading ? (
+        <View
+          style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
+        >
+          <ActivityIndicator size="large" color="#00875F" />
+        </View>
+      ) : (
+        <Component nextCard={handleNextCard} {...data[index].data} />
+      )}
     </S.Wrapper>
   );
 }

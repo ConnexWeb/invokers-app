@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import * as S from "./styles";
 import Button from "../../../components/Button";
 import { CardMultipleChoice } from "../mockData";
+import { View } from "react-native";
+import Animation from "../Animation";
 
 type Props = {
   nextCard: () => void;
@@ -10,8 +12,11 @@ type Props = {
 
 const MultipleAnswer = ({
   answer,
-  isCorrect,
-  options,
+  answer2,
+  answer3,
+  answer4,
+  correct_answer,
+  question,
   imageUrl,
   nextCard,
 }: Props) => {
@@ -25,43 +30,43 @@ const MultipleAnswer = ({
 
     setSelected(index);
 
-    const optionsAnswer = options.map((option, i) => {
+    const options = optionsAnswer.map((option, i) => {
       if (i === index) {
         return {
-          text: option,
+          text: option.text,
           variant: "checking",
         };
       }
 
       return {
-        text: option,
+        text: option.text,
         variant: "disabled",
       };
     });
 
-    setOptionsAnswer(optionsAnswer);
+    setOptionsAnswer(options);
   };
 
   const handleValidated = () => {
     setIsValidate(true);
 
-    const optionsAnswer = options.map((option, i) => {
+    const options = optionsAnswer.map((option, i) => {
       if (i === selected) {
-        setIsCorrectAnswer(i === isCorrect);
+        setIsCorrectAnswer(i === correct_answer - 1);
 
         return {
-          text: option,
-          variant: i === isCorrect ? "correct" : "incorrect",
+          text: option.text,
+          variant: i === correct_answer - 1 ? "correct" : "incorrect",
         };
       }
 
       return {
-        text: option,
+        text: option.text,
         variant: "disabled",
       };
     });
 
-    setOptionsAnswer(optionsAnswer);
+    setOptionsAnswer(options);
   };
 
   const handleNextCard = () => {
@@ -73,6 +78,8 @@ const MultipleAnswer = ({
   };
 
   useEffect(() => {
+    const options = [answer, answer2, answer3, answer4];
+
     const optionsAnswer = options.map((option) => {
       return {
         text: option,
@@ -81,30 +88,34 @@ const MultipleAnswer = ({
     });
 
     setOptionsAnswer(optionsAnswer);
-  }, [options]);
+  }, [answer]);
 
   return (
     <S.Wrapper>
       <S.Title>Escolha a correta:</S.Title>
 
-      <S.Question>{answer}</S.Question>
+      <View style={{ gap: 25 }}>
+        <View style={{ justifyContent: "center", alignItems: "center" }}>
+          <S.Question>{question}</S.Question>
+        </View>
 
-      {imageUrl && <S.Image source={{ uri: imageUrl }} />}
+        {imageUrl && <S.Image source={{ uri: imageUrl }} />}
 
-      <S.WrapperQuestions>
-        <S.Questions>
-          {optionsAnswer.map((answer, index) => (
-            <Button
-              onPress={() => handleSelected(index)}
-              key={index}
-              type="answer"
-              variant={answer.variant}
-            >
-              {answer.text}
-            </Button>
-          ))}
-        </S.Questions>
-      </S.WrapperQuestions>
+        <S.WrapperQuestions>
+          <S.Questions>
+            {optionsAnswer.map((answer, index) => (
+              <Button
+                onPress={() => handleSelected(index)}
+                key={index}
+                type="answer"
+                variant={answer.variant}
+              >
+                {answer.text}
+              </Button>
+            ))}
+          </S.Questions>
+        </S.WrapperQuestions>
+      </View>
 
       <S.WrapperButton>
         {isValidate && (

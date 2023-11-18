@@ -16,15 +16,18 @@ interface CardBase {
 
 export interface CardShorts extends CardBase {
   type: CardEnum.SHORTS;
-  answer: string;
+  image: string;
   shortsUrl: string;
 }
 
 export interface CardMultipleChoice extends CardBase {
   type: CardEnum.MULTIPLE_CHOICE;
-  options: string[];
+  question: string;
   answer: string;
-  isCorrect: number;
+  answer2: string;
+  answer3: string;
+  answer4: string;
+  correct_answer: number;
   imageUrl?: string;
 }
 
@@ -38,10 +41,25 @@ export interface CardSelect extends CardBase {
 
 export interface CardImagesChoice extends CardBase {
   type: CardEnum.IMAGES_CHOICE;
-  options: string[];
-  answer: string;
+  image: string;
+  image2: string;
+  image3: string;
+  image4: string;
   isCorrect: number;
   imageUrl?: string;
+  question: string;
+}
+
+export interface CardSelectChoice extends CardBase {
+  type: CardEnum.SELECT;
+  correctAnswers: number[];
+  answer: string;
+  answer2: string;
+  answer3: string;
+  answer4: string;
+  isCorrect: number;
+  imageUrl?: string;
+  question: string;
 }
 
 export interface CardImage extends CardBase {

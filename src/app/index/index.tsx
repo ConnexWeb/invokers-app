@@ -2,17 +2,21 @@ import { FlatList, View } from "react-native";
 import * as S from "./styles";
 import { ProgressBar } from "./components/ProgressBar";
 import { Exercise } from "../../components/Exercise";
-import { modules } from "../../data/modules";
+import { getModules } from "../../services/modules";
+import { useEffect, useState } from "react";
 
 export default function Home() {
-  const checkDoneExercisesFromModule = (exercises: any) => {
-    const doneExercises = exercises.filter(
-      (exercise: any) => exercise.state === "DONE"
-    );
-    return (
-      doneExercises.length + " / " + exercises.length + " lições concluídas"
-    );
+  const [modules, setModules] = useState([]);
+
+  const handleGetModules = async () => {
+    const response = await getModules();
+
+    setModules(response);
   };
+
+  useEffect(() => {
+    handleGetModules();
+  }, []);
 
   return (
     <S.Wrapper>
@@ -39,22 +43,11 @@ export default function Home() {
           data={modules}
           showsVerticalScrollIndicator={false}
           renderItem={({ item: module }) => (
-            <View style={{ marginBottom: 10 }}>
-              <S.ModuleTitle>{module.title}</S.ModuleTitle>
-
-              <S.ModuleProgress>
-                {checkDoneExercisesFromModule(module.data)}
-              </S.ModuleProgress>
-
-              <FlatList
-                data={module.data}
-                showsVerticalScrollIndicator={false}
-                keyExtractor={(item) => item.id.toString()}
-                renderItem={({ item: card }) => (
-                  <Exercise {...card} moduleId={card.id} />
-                )}
-              />
-            </View>
+            <Exercise
+              moduleId={module.id}
+              title={module.title}
+              state={"IN_PROGRESS"}
+            />
           )}
           contentContainerStyle={{ paddingBottom: 180 }}
         />
